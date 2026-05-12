@@ -6,53 +6,63 @@
 }
 
 :root {
-    --laranja: #ff523b;
-    --laranja-escuro: #ff3b2e;
+    --laranja: #1b8f9c;
+    --laranja-escuro: #126b75;
     --preto: #111;
     --branco: #fff;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
     background: var(--laranja);
     color: var(--branco);
+    overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+    display: block;
 }
 
 /* NAVBAR */
 
 .navbar {
     width: 100%;
-    height: 90px;
-    padding: 0 40px;
-
+    min-height: 86px;
+    padding: 14px clamp(16px, 4vw, 50px);
     position: fixed;
     top: 0;
     left: 0;
     z-index: 1000;
-
     display: flex;
     align-items: center;
     justify-content: space-between;
-
-    background: rgba(0, 0, 0, 0.55);
+    gap: 20px;
+    background: rgba(0, 0, 0, 0.58);
     backdrop-filter: blur(8px);
 }
 
 #logoMenu {
-    width: 120px;
-    display: block;
+    width: clamp(95px, 12vw, 140px);
     cursor: pointer;
+    flex-shrink: 0;
 }
 
 .menu {
     display: flex;
-    gap: 30px;
+    gap: clamp(16px, 3vw, 34px);
     list-style: none;
+    align-items: center;
 }
 
 .menu a {
     color: #fff;
     text-decoration: none;
     font-weight: bold;
+    font-size: clamp(14px, 1.2vw, 16px);
 }
 
 .btn-nav {
@@ -61,80 +71,69 @@ body {
     border-radius: 8px;
     text-decoration: none;
     font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-    padding: 8px 12px;
+    font-size: clamp(11px, 1vw, 13px);
+    padding: 9px 14px;
     white-space: nowrap;
-
+    flex-shrink: 0;
 }
 
 /* CARROSSEL */
 
 .carrossel {
     width: 100%;
-    height: 100vh;
-    min-height: 700px;
-
+    min-height: 100svh;
     position: relative;
     overflow: hidden;
-
     background: #111;
-    padding-top: 90px;
+    padding-top: 86px;
 }
 
 .slide {
     position: absolute;
-    top: 115px;
-    left: 25px;
-    right: 25px;
-    bottom: 25px;
-
+    top: 110px;
+    left: clamp(14px, 2vw, 28px);
+    right: clamp(14px, 2vw, 28px);
+    bottom: clamp(14px, 2vw, 28px);
     border-radius: 22px;
-
-    background-image: url("../img/carrosel-1.png");
+    background-image: url("https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=1600&q=80");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-
-    transition:
-    opacity 0.45s ease,
-    transform 0.45s ease;
+    transition: opacity 0.45s ease, transform 0.45s ease;
 }
 
 .slide::after {
     content: "";
     position: absolute;
     inset: 0;
-    border-radius: 22px;
+    border-radius: inherit;
     background: rgba(0, 0, 0, 0.38);
 }
 
 .conteudo-hero {
     position: relative;
     z-index: 5;
-
-    height: calc(100vh - 90px);
-    min-height: 600px;
-
+    min-height: calc(100svh - 86px);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-
     text-align: center;
-    padding: 40px;
+    padding: clamp(35px, 6vw, 80px);
 }
 
 .conteudo-hero h1 {
-    font-size: 50px;
+    font-size: clamp(32px, 5vw, 62px);
+    line-height: 1.08;
     margin-bottom: 20px;
+    max-width: 950px;
 }
 
 .conteudo-hero p {
-    font-size: 18px;
+    font-size: clamp(15px, 1.8vw, 20px);
+    line-height: 1.5;
     margin-bottom: 30px;
+    max-width: 760px;
 }
 
 .btn-hero {
@@ -149,28 +148,28 @@ body {
 /* SOBRE */
 
 .sobre {
-    padding: 80px 50px;
+    padding: clamp(55px, 8vw, 90px) clamp(20px, 5vw, 60px);
     background: var(--laranja);
 }
 
 .container-sobre {
-    max-width: 1200px;
+    width: min(1200px, 100%);
     margin: auto;
-
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 50px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(30px, 5vw, 60px);
     align-items: center;
 }
 
 .texto h2 {
-    font-size: 34px;
-    color: #6b5b7b;
+    font-size: clamp(28px, 4vw, 38px);
+    color: #fff;
     margin-bottom: 20px;
 }
 
 .texto h3 {
-    color: #000;
+    font-size: clamp(20px, 2.5vw, 25px);
+    color: #063b40;
     margin-bottom: 20px;
 }
 
@@ -182,6 +181,7 @@ body {
 .texto li {
     line-height: 1.6;
     margin-bottom: 15px;
+    font-size: clamp(15px, 1.4vw, 17px);
 }
 
 .texto ul {
@@ -190,10 +190,9 @@ body {
 
 .imagem img {
     width: 100%;
-    height: 320px;
+    height: clamp(260px, 34vw, 420px);
     object-fit: cover;
-    border-radius: 14px;
-    display: block;
+    border-radius: 16px;
 }
 
 .imagem-orcamento {
@@ -201,9 +200,15 @@ body {
 }
 
 .imagem-orcamento img {
-    max-width: 420px;
+    max-width: 430px;
+    width: 100%;
     height: auto;
+    margin: 0 auto 20px;
+}
+
+.imagem-orcamento p {
     margin-bottom: 20px;
+    line-height: 1.5;
 }
 
 .imagem-orcamento a {
@@ -220,24 +225,25 @@ body {
 
 .servicos {
     background: var(--laranja-escuro);
-    padding: 80px 50px;
+    padding: clamp(55px, 8vw, 90px) clamp(20px, 5vw, 60px);
     text-align: center;
 }
 
 .servicos h2 {
     margin-bottom: 10px;
+    font-size: clamp(28px, 4vw, 38px);
 }
 
 .subtitulo {
     margin-bottom: 40px;
+    font-size: clamp(15px, 1.6vw, 18px);
 }
 
 .cards {
-    max-width: 1200px;
+    width: min(1200px, 100%);
     margin: auto;
-
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 25px;
 }
 
@@ -246,15 +252,20 @@ body {
     color: #111;
     border-radius: 16px;
     padding: 30px 20px;
-    min-height: 280px;
+    min-height: 260px;
     cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-6px);
 }
 
 .card img {
     width: 85px;
     height: 85px;
     object-fit: contain;
-    margin-bottom: 15px;
+    margin: 0 auto 15px;
 }
 
 .card h3 {
@@ -262,7 +273,8 @@ body {
 }
 
 .card p {
-    color: #8a6d8f;
+    color: #126b75;
+    line-height: 1.4;
 }
 
 .card a {
@@ -272,7 +284,7 @@ body {
 
 .texto-redirecionamento {
     margin-top: 30px;
-    font-size: 20px;
+    font-size: clamp(16px, 2vw, 20px);
     font-weight: bold;
 }
 
@@ -284,11 +296,10 @@ body {
 }
 
 .linha {
-    max-width: 1200px;
+    width: min(1200px, 100%);
     margin: auto;
-
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
     gap: 30px;
 }
 
@@ -323,160 +334,155 @@ body {
 /* TABLET */
 
 @media (max-width: 900px) {
+    #menu {
+        position: absolute;
+        top: 86px;
+        left: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.96);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: 0.4s;
+        z-index: 99999;
+    }
 
-    .cards {
-        grid-template-columns: repeat(2, 1fr);
+    #menu.active {
+        max-height: 350px;
+        opacity: 1;
+        padding: 15px 0;
+    }
+
+    #menu li {
+        width: 100%;
+        text-align: center;
+    }
+
+    #menu li a {
+        display: block;
+        padding: 18px 0;
     }
 
     .container-sobre {
         grid-template-columns: 1fr;
     }
-
-    .linha {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    #menu {
-
-        position: absolute;
-        top: 90px;
-        left: 0;
-
-        width: 100%;
-
-        background: rgba(0,0,0,0.96);
-
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-
-        gap: 0;
-
-        max-height: 0;
-        overflow: hidden;
-        opacity: 0;
-
-        transition: 0.4s;
-
-        z-index: 99999;
-    }
-
-    #menu.active {
-
-        max-height: 350px;
-        opacity: 1;
-        padding: 15px 0;
-
-    }
-
-    #menu li {
-
-        width: 100%;
-        text-align: center;
-
-    }
-
-    #menu li a {
-
-        display: block;
-        padding: 18px 0;
-
-    }
-
 }
 
 /* MOBILE */
 
-@media (max-width: 500px) {
+@media (max-width: 600px) {
+
+    body {
+        width: 100%;
+        overflow-x: hidden;
+    }
 
     .navbar {
-        height: 85px;
-        padding: 10px 16px;
-        background: rgba(255, 87, 34, 0.96);
+        width: 100%;
+        height: 82px;
+        min-height: 82px;
+        padding: 10px 14px;
+        background: rgba(27, 143, 156, 0.96);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
 
     #logoMenu {
         width: 95px;
+        max-width: 95px;
     }
 
     .btn-nav {
-
-        display: flex;
-
-        align-items: center;
-        justify-content: center;
-
-        font-size: 11px;
-
-        padding: 8px 10px;
-
-        border-radius: 8px;
+        font-size: 10px;
+        padding: 7px 9px;
+        max-width: 110px;
+        overflow: hidden;
+        text-align: center;
     }
 
-    .topo {
-        display: flex;
-        flex-direction: column;
+    #menu {
+        top: 82px;
     }
 
     .carrossel {
-        height: auto;
+        width: 100%;
         min-height: auto;
-        padding-top: 85px;
+        padding-top: 82px;
         background: #111;
     }
 
     .slide {
         position: relative;
+        width: 100%;
+        height: 360px;
 
         top: auto;
         left: auto;
         right: auto;
         bottom: auto;
 
-        width: 100%;
-        height: 560px;
-
         border-radius: 0;
 
-        background-image: url("../img/mobile-carrosel-1.png");
+        background-image: url("https://images.unsplash.com/photo-1606811971618-4486d14f3f99?auto=format&fit=crop&w=900&q=80");
         background-size: cover;
-        background-position: center top;
-    }
-
-    .slide::after {
-        border-radius: 0;
-        background: rgba(0, 0, 0, 0.28);
+        background-position: center;
+        background-repeat: no-repeat;
     }
 
     .conteudo-hero {
-        height: auto;
+        width: 100%;
         min-height: auto;
-
-        padding: 40px 25px 50px;
-
+        padding: 34px 18px 42px;
         background: var(--laranja);
+        text-align: center;
+        overflow: visible;
     }
 
     .conteudo-hero h1 {
-        font-size: 30px;
+        width: 100%;
+        max-width: 100%;
+        font-size: 25px;
         line-height: 1.15;
+        margin-bottom: 16px;
+        word-break: normal;
     }
 
     .conteudo-hero p {
-        font-size: 15px;
-        line-height: 1.4;
+        width: 100%;
+        max-width: 100%;
+        font-size: 13px;
+        line-height: 1.5;
+        margin-bottom: 24px;
+    }
+
+    .btn-hero {
+        width: 100%;
+        max-width: 300px;
+        padding: 14px 18px;
+        font-size: 12px;
+        text-align: center;
     }
 
     .sobre {
-        padding: 60px 25px;
+        padding: 55px 20px;
+    }
+
+    .container-sobre {
+        grid-template-columns: 1fr;
     }
 
     .imagem img {
         height: auto;
+        min-height: 240px;
     }
 
     .servicos {
-        padding: 60px 25px;
+        padding: 55px 20px;
     }
 
     .cards {
@@ -485,5 +491,26 @@ body {
 
     .linha {
         grid-template-columns: 1fr;
+    }
+}
+
+/* CELULAR MUITO PEQUENO */
+
+@media (max-width: 360px) {
+    .navbar {
+        gap: 8px;
+    }
+
+    #logoMenu {
+        width: 82px;
+    }
+
+    .btn-nav {
+        font-size: 10px;
+        padding: 7px 8px;
+    }
+
+    .conteudo-hero h1 {
+        font-size: 28px;
     }
 }

@@ -1,149 +1,984 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clínica Sorriso Prime</title>
-    <link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gustavo Dev | Sites e Landing Pages</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#05070a;
+    color:#fff;
+    overflow-x:hidden;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+img{
+    max-width:100%;
+    display:block;
+}
+
+:root{
+    --orange:#ff7a00;
+    --orange-dark:#d95f00;
+    --dark:#05070a;
+    --card:#0c1118;
+    --text:#d7d7d7;
+}
+
+/* NAVBAR */
+
+.navbar{
+    width:100%;
+    height:86px;
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:1000;
+    background:rgba(5,7,10,.92);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid rgba(255,122,0,.28);
+}
+
+.nav-container{
+    width:100%;
+    max-width:1200px;
+    height:100%;
+    margin:auto;
+    padding:0 22px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:9px;
+    font-size:22px;
+    font-weight:900;
+}
+
+.logo-box{
+    width:38px;
+    height:38px;
+    border-radius:12px;
+    background:linear-gradient(135deg,#ff7a00,#ffb35c);
+    color:#000;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:900;
+}
+
+.logo span{
+    color:var(--orange);
+}
+
+.menu{
+    list-style:none;
+    display:flex;
+    align-items:center;
+    gap:30px;
+}
+
+.menu a{
+    font-size:14px;
+    color:#eee;
+    transition:.3s;
+}
+
+.menu a:hover{
+    color:var(--orange);
+}
+
+.btn-nav{
+    background:var(--orange);
+    color:#000;
+    padding:13px 23px;
+    border-radius:30px;
+    font-size:14px;
+    font-weight:800;
+    transition:.3s;
+}
+
+.btn-nav:hover{
+    background:#fff;
+}
+
+.menu-toggle{
+    display:none;
+    font-size:32px;
+    color:var(--orange);
+    cursor:pointer;
+}
+
+/* HERO */
+
+.hero{
+    min-height:100vh;
+    padding:145px 22px 80px;
+    background:
+    radial-gradient(circle at top right,rgba(255,122,0,.22),transparent 32%),
+    linear-gradient(180deg,#05070a,#080c12);
+    display:flex;
+    align-items:center;
+}
+
+.hero-container{
+    width:100%;
+    max-width:1200px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:1.05fr .95fr;
+    align-items:center;
+    gap:60px;
+}
+
+.hero-text h1{
+    font-size:58px;
+    line-height:1.05;
+    margin-bottom:22px;
+}
+
+.hero-text h1 span{
+    color:var(--orange);
+}
+
+.hero-text p{
+    max-width:600px;
+    color:var(--text);
+    font-size:18px;
+    line-height:1.7;
+    margin-bottom:32px;
+}
+
+.hero-buttons{
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
+}
+
+.btn-primary,
+.btn-secondary{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:16px 28px;
+    border-radius:35px;
+    font-weight:800;
+    font-size:15px;
+    transition:.3s;
+}
+
+.btn-primary{
+    background:var(--orange);
+    color:#000;
+}
+
+.btn-primary:hover{
+    background:#fff;
+}
+
+.btn-secondary{
+    border:1px solid rgba(255,122,0,.55);
+    color:#fff;
+}
+
+.btn-secondary:hover{
+    background:var(--orange);
+    color:#000;
+}
+
+/* HERO SLIDER */
+
+.hero-card{
+    background:rgba(255,255,255,.03);
+    border:1px solid rgba(255,122,0,.35);
+    border-radius:28px;
+    padding:16px;
+    box-shadow:0 25px 80px rgba(0,0,0,.45);
+}
+
+.mockup-slider{
+    width:100%;
+    height:390px;
+    border-radius:22px;
+    position:relative;
+    overflow:hidden;
+    background:#090d13;
+    border:1px solid rgba(255,255,255,.10);
+}
+
+.mockup-slide{
+    position:absolute;
+    inset:0;
+    opacity:0;
+    transition:opacity .8s ease-in-out;
+}
+
+.mockup-slide.active{
+    opacity:1;
+}
+
+.mockup-slide img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:top center;
+}
+
+.slider-dots{
+    position:absolute;
+    bottom:18px;
+    left:50%;
+    transform:translateX(-50%);
+    display:flex;
+    gap:10px;
+    z-index:20;
+}
+
+.dot{
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background:rgba(255,255,255,.28);
+    transition:.3s;
+}
+
+.dot.active{
+    background:var(--orange);
+    transform:scale(1.2);
+}
+
+/* PADRÃO SECTIONS */
+
+section{
+    padding:90px 22px;
+}
+
+.container{
+    width:100%;
+    max-width:1200px;
+    margin:auto;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:48px;
+}
+
+.section-title span{
+    color:var(--orange);
+    font-weight:900;
+    font-size:14px;
+}
+
+.section-title h2{
+    font-size:42px;
+    margin-top:10px;
+}
+
+.section-title p{
+    color:var(--text);
+    margin-top:14px;
+    font-size:16px;
+    line-height:1.6;
+}
+
+/* SERVIÇOS */
+
+.services-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:24px;
+}
+
+.service-card{
+    background:var(--card);
+    border:1px solid rgba(255,122,0,.18);
+    padding:30px;
+    border-radius:24px;
+    transition:.3s;
+}
+
+.service-card:hover{
+    transform:translateY(-8px);
+    border-color:var(--orange);
+}
+
+.icon{
+    width:54px;
+    height:54px;
+    background:rgba(255,122,0,.12);
+    border-radius:16px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:26px;
+    margin-bottom:20px;
+}
+
+.service-card h3{
+    font-size:21px;
+    margin-bottom:12px;
+}
+
+.service-card p{
+    color:var(--text);
+    line-height:1.6;
+    font-size:15px;
+}
+
+/* PORTFÓLIO */
+
+.portfolio{
+    background:#080b10;
+}
+
+.projects-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:26px;
+}
+
+.project-card{
+    background:var(--card);
+    border-radius:24px;
+    overflow:hidden;
+    border:1px solid rgba(255,122,0,.22);
+    transition:.3s;
+}
+
+.project-card:hover{
+    transform:translateY(-8px);
+    border-color:var(--orange);
+}
+
+.project-img{
+    width:100%;
+    height:210px;
+    background:#05070a;
+    overflow:hidden;
+    border-bottom:1px solid rgba(255,122,0,.18);
+}
+
+.project-img img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:top center;
+    transition:.4s;
+}
+
+.project-card:hover .project-img img{
+    transform:scale(1.06);
+}
+
+.project-content{
+    padding:24px;
+}
+
+.project-content h3{
+    font-size:22px;
+    margin-bottom:10px;
+}
+
+.project-content p{
+    color:var(--text);
+    line-height:1.6;
+    font-size:15px;
+    margin-bottom:18px;
+}
+
+.project-content a{
+    color:var(--orange);
+    font-weight:900;
+    font-size:14px;
+}
+
+/* DOMÍNIO */
+
+.domain-box{
+    background:linear-gradient(135deg,rgba(255,122,0,.16),rgba(255,255,255,.03));
+    border:1px solid rgba(255,122,0,.28);
+    border-radius:30px;
+    padding:50px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+    align-items:center;
+}
+
+.domain-box h2{
+    font-size:38px;
+    margin-bottom:18px;
+}
+
+.domain-box p{
+    color:var(--text);
+    line-height:1.7;
+    font-size:17px;
+}
+
+.domain-list{
+    display:grid;
+    gap:14px;
+}
+
+.domain-list div{
+    background:rgba(255,255,255,.05);
+    padding:16px 20px;
+    border-radius:16px;
+    color:#eee;
+    font-size:15px;
+}
+
+/* PROCESSO */
+
+.process-grid{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:18px;
+}
+
+.process-card{
+    background:var(--card);
+    border:1px solid rgba(255,122,0,.18);
+    padding:26px;
+    border-radius:22px;
+    text-align:center;
+}
+
+.process-card strong{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    background:var(--orange);
+    color:#000;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:0 auto 16px;
+}
+
+.process-card p{
+    color:var(--text);
+    line-height:1.5;
+    font-size:15px;
+}
+
+/* CTA */
+
+.cta{
+    text-align:center;
+    background:
+    radial-gradient(circle at center,rgba(255,122,0,.18),transparent 34%),
+    #05070a;
+}
+
+.cta h2{
+    font-size:46px;
+    margin-bottom:16px;
+}
+
+.cta p{
+    color:var(--text);
+    font-size:18px;
+    margin-bottom:30px;
+}
+
+/* FOOTER */
+
+.footer{
+    padding:38px 22px;
+    background:#030406;
+    border-top:1px solid rgba(255,122,0,.22);
+    text-align:center;
+    color:#aaa;
+}
+
+.footer strong{
+    color:var(--orange);
+}
+
+/* RESPONSIVO */
+
+@media(max-width:1100px){
+    .hero-container{
+        grid-template-columns:1fr;
+        gap:45px;
+    }
+
+    .hero-text{
+        text-align:center;
+    }
+
+    .hero-text p{
+        margin-left:auto;
+        margin-right:auto;
+    }
+
+    .hero-buttons{
+        justify-content:center;
+    }
+
+    .services-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .projects-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .process-grid{
+        grid-template-columns:repeat(3,1fr);
+    }
+}
+
+@media(max-width:850px){
+    .navbar{
+        height:74px;
+    }
+
+    .menu-toggle{
+        display:block;
+    }
+
+    .btn-nav{
+        display:none;
+    }
+
+    .menu{
+        position:absolute;
+        top:74px;
+        left:0;
+        width:100%;
+        background:#05070a;
+        border-bottom:1px solid rgba(255,122,0,.28);
+        display:none;
+        flex-direction:column;
+        padding:25px 22px;
+        gap:22px;
+    }
+
+    .menu.active{
+        display:flex;
+    }
+
+    .hero{
+        padding-top:115px;
+        min-height:auto;
+    }
+
+    .hero-text h1{
+        font-size:40px;
+    }
+
+    .hero-text p{
+        font-size:16px;
+    }
+
+    .mockup-slider{
+        height:320px;
+    }
+
+    .domain-box{
+        grid-template-columns:1fr;
+        padding:32px;
+    }
+
+    .domain-box h2,
+    .section-title h2{
+        font-size:32px;
+    }
+
+    .cta h2{
+        font-size:34px;
+    }
+}
+
+@media(max-width:620px){
+    .logo{
+        font-size:19px;
+    }
+
+    .logo-box{
+        width:35px;
+        height:35px;
+    }
+
+    .hero-text h1{
+        font-size:34px;
+    }
+
+    .hero-buttons{
+        flex-direction:column;
+    }
+
+    .btn-primary,
+    .btn-secondary{
+        width:100%;
+    }
+
+    .services-grid,
+    .projects-grid,
+    .process-grid{
+        grid-template-columns:1fr;
+    }
+
+    .mockup-slider{
+        height:260px;
+    }
+
+    section{
+        padding:70px 18px;
+    }
+
+    .project-img{
+        height:190px;
+    }
+}
+
+@media(max-width:420px){
+    .hero-text h1{
+        font-size:30px;
+    }
+
+    .section-title h2,
+    .domain-box h2{
+        font-size:28px;
+    }
+
+    .mockup-slider{
+        height:220px;
+    }
+
+    .project-img{
+        height:170px;
+    }
+}
+</style>
 </head>
+
 <body>
 
-<header class="topo">
-    <nav class="navbar">
-        <img src="https://dummyimage.com/180x80/ffffff/1b8f9c&text=Sorriso+Prime" alt="Clínica Sorriso Prime" id="logoMenu">
+<header class="navbar">
+    <div class="nav-container">
+
+        <a href="#inicio" class="logo">
+            <div class="logo-box">G</div>
+            Gustavo <span>Dev</span>
+        </a>
 
         <ul class="menu" id="menu">
-            <li><a href="#empresa">Clínica</a></li>
-            <li><a href="#servicos">Tratamentos</a></li>
+            <li><a href="#servicos">Serviços</a></li>
+            <li><a href="#portfolio">Projetos</a></li>
+            <li><a href="#dominio">Domínio</a></li>
+            <li><a href="#processo">Processo</a></li>
             <li><a href="#contato">Contato</a></li>
         </ul>
 
-        <a href="#" id="servicoautomoveis" class="btn-nav">Agende aqui</a>
-    </nav>
+        <a class="btn-nav" href="https://wa.me/5547997327311?text=Ol%C3%A1%21%20Quero%20solicitar%20um%20or%C3%A7amento%20para%20site%20ou%20landing%20page." target="_blank">
+            Orçamento
+        </a>
 
-    <section class="carrossel">
-        <div class="slide ativo"></div>
+        <div class="menu-toggle" id="menuToggle">☰</div>
 
-        <div class="conteudo-hero">
-            <h1>Seu sorriso merece excelência</h1>
-            <p>Tratamentos odontológicos modernos, atendimento humanizado e tecnologia para cuidar do seu sorriso.</p>
-            <a href="#servicos" class="btn-hero">Conheça nossos tratamentos →</a>
-        </div>
-    </section>
+    </div>
 </header>
 
-<section class="sobre" id="empresa">
-    <div class="container-sobre">
-        <div class="texto">
-            <h2>Sobre a Clínica Sorriso Prime</h2>
-            <p>Na Sorriso Prime, cuidamos da sua saúde bucal com atenção, tecnologia e atendimento personalizado.</p>
-            <p>Nossa equipe oferece tratamentos modernos para transformar o seu sorriso com conforto e segurança.</p>
-            <p>Atendemos desde consultas preventivas até procedimentos estéticos e reabilitação oral.</p>
-            <p><strong>Agende sua avaliação e descubra o melhor tratamento para você!</strong></p>
+<main>
+
+<section class="hero" id="inicio">
+    <div class="hero-container">
+
+        <div class="hero-text">
+            <h1>Criação de sites e <span>landing pages</span> profissionais.</h1>
+
+            <p>
+                Desenvolvo páginas modernas, responsivas e focadas em conversão para empresas,
+                profissionais autônomos e negócios que querem vender mais pela internet.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="https://wa.me/5547997327311?text=Ol%C3%A1%21%20Tenho%20interesse%20em%20criar%20um%20site%20ou%20landing%20page." target="_blank" class="btn-primary">
+                    Solicitar orçamento
+                </a>
+
+                <a href="#portfolio" class="btn-secondary">
+                    Ver projetos
+                </a>
+            </div>
         </div>
 
-        <div class="imagem">
-            <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1200&q=80" alt="Clínica odontológica moderna">
+        <div class="hero-card">
+            <div class="mockup-slider">
+
+                <div class="mockup-slide active">
+                    <img src="img/rascunho.png" alt="Projeto demonstrativo 1">
+                </div>
+
+                <div class="mockup-slide">
+                    <img src="img/evolux.png" alt="Projeto demonstrativo 2">
+                </div>
+
+                <div class="mockup-slide">
+                    <img src="img/performance.png" alt="Projeto demonstrativo 3">
+                </div>
+
+                <div class="slider-dots">
+                    <span class="dot active"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+
+            </div>
         </div>
+
     </div>
 </section>
 
-<section class="sobre">
-    <div class="container-sobre">
-        <div class="texto">
-            <h2>Atendimento completo</h2>
-            <h3>Odontologia moderna para todas as fases do seu sorriso</h3>
+<section id="servicos">
+    <div class="container">
 
-            <ul>
-                <li><strong>Clareamento Dental</strong><p>Sorriso mais branco com acompanhamento profissional.</p></li>
-                <li><strong>Implantes Dentários</strong><p>Recupere sua confiança para sorrir, falar e mastigar.</p></li>
-                <li><strong>Ortodontia</strong><p>Alinhamento dental com planejamento personalizado.</p></li>
-                <li><strong>Estética Dental</strong><p>Harmonização do sorriso com naturalidade e segurança.</p></li>
-            </ul>
-
-            <h4>Tratamentos realizados com cuidado, tecnologia e responsabilidade.</h4>
+        <div class="section-title">
+            <span>MEUS SERVIÇOS</span>
+            <h2>O que posso criar para você</h2>
+            <p>Projetos feitos sob medida para apresentar sua empresa com profissionalismo.</p>
         </div>
 
-        <div class="imagem imagem-orcamento">
-            <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=900&q=80" alt="Tratamento odontológico">
-            <p>Solicite uma avaliação e descubra qual tratamento é ideal para o seu sorriso.</p>
-            <a href="#" id="btnOrcamentoGratis">Agendar avaliação →</a>
+        <div class="services-grid">
+
+            <div class="service-card">
+                <div class="icon">💻</div>
+                <h3>Landing Pages</h3>
+                <p>Páginas únicas focadas em conversão, captação de clientes e apresentação de serviços.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="icon">🌐</div>
+                <h3>Sites Institucionais</h3>
+                <p>Sites profissionais para empresas, clínicas, lojas, prestadores de serviço e negócios locais.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="icon">⚙️</div>
+                <h3>Projetos do Zero</h3>
+                <p>Criação personalizada conforme a necessidade do cliente, desde a ideia até a publicação online.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="icon">🚀</div>
+                <h3>Publicação Online</h3>
+                <p>Configuração de domínio, hospedagem, SSL, WhatsApp, botões e estrutura completa.</p>
+            </div>
+
         </div>
+
     </div>
 </section>
 
-<section class="servicos" id="servicos">
-    <h2>Conheça nossos tratamentos</h2>
-    <p class="subtitulo">Cuidado, estética e saúde para transformar o seu sorriso</p>
+<section class="portfolio" id="portfolio">
+    <div class="container">
 
-    <div class="cards">
-        <div class="card" id="servicoClareamento">
-            <img src="https://cdn-icons-png.flaticon.com/512/3468/3468379.png" alt="Clareamento dental">
-            <h3>Clareamento Dental</h3>
-            <p>Sorriso mais branco com segurança e acompanhamento profissional.</p>
+        <div class="section-title">
+            <span>PORTFÓLIO</span>
+            <h2>Projetos demonstrativos</h2>
+            <p>Alguns modelos de sites e landing pages que podem servir como inspiração para seu projeto.</p>
         </div>
 
-        <div class="card" id="servicoImplantes">
-            <img src="https://cdn-icons-png.flaticon.com/512/1946/1946429.png" alt="Implantes dentários">
-            <h3>Implantes Dentários</h3>
-            <p>Recupere sua confiança para sorrir, mastigar e falar melhor.</p>
+        <div class="projects-grid">
+    
+            <div class="project-card">
+<a href="https://dulcet-treacle-59480f.netlify.app/">
+                <div class="project-img">
+                    <img src="img/mine-performance.png" alt="Performance Film">
+                </div>
+                <div class="project-content">
+                    <h3>Performance Film</h3>
+                    <p>Landing page para empresa de películas automotivas e residenciais.</p>
+                    Ver projeto →</a>
+                </div>
+
         </div>
 
-        <div class="card">
-            <a href="https://www.google.com/maps" target="_blank">
-                <img src="https://cdn-icons-png.flaticon.com/512/684/684908.png" alt="Localização">
-                <h3>Localização</h3>
-                <p>Abra no seu GPS e venha nos visitar.</p>
-            </a>
+            <div class="project-card">
+                <div class="project-img">
+                    <img src="img/mine-evolux.png" alt="Evolux Financeira">
+                </div>
+
+
+                <div class="project-content">
+                    <a href="http://evoluxempresarial.com.br/" target="_blank">
+                    <h3>Evolux Financeira</h3>
+                    <p>Site institucional para consultoria, assessoria e recuperação de crédito.</p>Ver projeto →</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-img">
+                    <img src="img/mine-rascunho.png" alt="Modelo Comercial">
+                </div>
+                <div class="project-content">
+                    <h3>Modelo Comercial</h3>
+                    <p>Layout moderno para negócios, serviços, produtos e apresentação profissional.</p>
+                    <a href="#" target="_blank">Ver projeto →</a>
+                </div>
+            </div>
+
         </div>
 
-        <div class="card">
-            <a href="https://www.google.com/search?q=clinica+odontologica" target="_blank">
-                <img src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png" alt="Avaliações">
-                <h3>Avaliações</h3>
-                <p>Veja o que nossos pacientes falam sobre nós.</p>
-            </a>
-        </div>
-    </div>
-
-    <div class="texto-redirecionamento">
-        *Clique acima e fale conosco!
     </div>
 </section>
 
-<footer class="rodape" id="contato">
-    <div class="linha">
-        <div class="coluna">
-            <h3>Localização</h3>
-            <p>📍 Rua Exemplo, n° 123 - Centro</p>
+<section id="dominio">
+    <div class="container">
+
+        <div class="domain-box">
+
+            <div>
+                <h2>Não tem domínio ou hospedagem?</h2>
+                <p>
+                    Sem problema. Além de desenvolver o site, também posso configurar toda a parte técnica
+                    para deixar seu projeto online, funcionando e pronto para receber clientes.
+                </p>
+            </div>
+
+            <div class="domain-list">
+                <div>✅ Registro de domínio</div>
+                <div>✅ Configuração de hospedagem</div>
+                <div>✅ Site publicado online</div>
+                <div>✅ Integração com WhatsApp</div>
+                <div>✅ Certificado SSL / segurança</div>
+                <div>✅ Ajustes finais após entrega</div>
+            </div>
+
         </div>
 
-        <div class="coluna">
-            <img src="https://dummyimage.com/180x80/ffffff/1b8f9c&text=Sorriso+Prime" alt="Clínica Sorriso Prime">
-            <h3>CLÍNICA SORRISO PRIME</h3>
-            <p>Odontologia moderna para cuidar do seu sorriso.</p>
-        </div>
-
-        <div class="coluna">
-            <h3>Mais Infos</h3>
-            <p>Clínica Sorriso Prime</p>
-            <p>(47) 99732-7311</p>
-            <p>contato@sorrisoprime.com</p>
-        </div>
-
-        <div class="coluna">
-            <h3>Redes Sociais</h3>
-            <p>Instagram</p>
-            <p>Facebook</p>
-            <p>WhatsApp</p>
-            <p>Google</p>
-        </div>
     </div>
+</section>
 
-    <hr>
-    <p class="direitos">© Todos os direitos reservados</p>
+<section id="processo">
+    <div class="container">
+
+        <div class="section-title">
+            <span>COMO FUNCIONA</span>
+            <h2>Processo simples e direto</h2>
+        </div>
+
+        <div class="process-grid">
+
+            <div class="process-card">
+                <strong>1</strong>
+                <p>Você solicita um orçamento.</p>
+            </div>
+
+            <div class="process-card">
+                <strong>2</strong>
+                <p>Conversamos sobre sua ideia.</p>
+            </div>
+
+            <div class="process-card">
+                <strong>3</strong>
+                <p>Crio o layout do projeto.</p>
+            </div>
+
+            <div class="process-card">
+                <strong>4</strong>
+                <p>Fazemos os ajustes finais.</p>
+            </div>
+
+            <div class="process-card">
+                <strong>5</strong>
+                <p>Seu site vai para o ar.</p>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<section class="cta" id="contato">
+    <div class="container">
+
+        <h2>Vamos criar seu projeto?</h2>
+        <p>Me chame no WhatsApp e solicite um orçamento sem compromisso.</p>
+
+        <a href="https://wa.me/5547997327311?text=Ol%C3%A1%21%20Quero%20fazer%20um%20or%C3%A7amento%20para%20cria%C3%A7%C3%A3o%20de%20site%20ou%20landing%20page." target="_blank" class="btn-primary">
+            Falar no WhatsApp
+        </a>
+
+    </div>
+</section>
+
+</main>
+
+<footer class="footer">
+    <p><strong>Gustavo Dev</strong> © 2026 - Desenvolvimento de Sites e Landing Pages</p>
 </footer>
 
-<script src="js/script.js"></script>
+<script>
+const menuToggle = document.getElementById('menuToggle');
+const menu = document.getElementById('menu');
+
+menuToggle.addEventListener('click', function(){
+    menu.classList.toggle('active');
+});
+
+const linksMenu = document.querySelectorAll('.menu a');
+
+linksMenu.forEach(function(link){
+    link.addEventListener('click', function(){
+        menu.classList.remove('active');
+    });
+});
+
+/* CARROSSEL HERO */
+
+const slides = document.querySelectorAll('.mockup-slide');
+const dots = document.querySelectorAll('.dot');
+
+let currentSlide = 0;
+
+function showSlide(index){
+    slides.forEach(function(slide){
+        slide.classList.remove('active');
+    });
+
+    dots.forEach(function(dot){
+        dot.classList.remove('active');
+    });
+
+    slides[index].classList.add('active');
+    dots[index].classList.add('active');
+}
+
+setInterval(function(){
+    currentSlide++;
+
+    if(currentSlide >= slides.length){
+        currentSlide = 0;
+    }
+
+    showSlide(currentSlide);
+}, 2800);
+</script>
+
 </body>
 </html>

@@ -35,32 +35,32 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const btnAgende = document.getElementById('servicoautomoveis');
     const btnOrcamentoGratis = document.getElementById('btnOrcamentoGratis');
-    const cardAutomoveis = document.getElementById('servicoAutomoveis');
-    const cardResidencial = document.getElementById('servicoResidencial');
+    const cardClareamento = document.getElementById('servicoClareamento');
+    const cardImplantes = document.getElementById('servicoImplantes');
 
     if (btnAgende) {
         btnAgende.addEventListener('click', function(e) {
             e.preventDefault();
-            abrirWhatsApp('Olá! Gostaria de mais informações e agendar um serviço de películas. Podem me ajudar?');
+            abrirWhatsApp('Olá! Gostaria de agendar uma avaliação odontológica.');
         });
     }
 
     if (btnOrcamentoGratis) {
         btnOrcamentoGratis.addEventListener('click', function(e) {
             e.preventDefault();
-            abrirWhatsApp('Olá! Gostaria de solicitar um orçamento gratuito para películas automotivas.');
+            abrirWhatsApp('Olá! Gostaria de solicitar uma avaliação para tratamento odontológico.');
         });
     }
 
-    if (cardAutomoveis) {
-        cardAutomoveis.addEventListener('click', function() {
-            abrirWhatsApp('Olá! Gostaria de mais informações sobre os SERVIÇOS de películas no meu Automóvel. Podem me ajudar?');
+    if (cardClareamento) {
+        cardClareamento.addEventListener('click', function() {
+            abrirWhatsApp('Olá! Gostaria de mais informações sobre clareamento dental.');
         });
     }
 
-    if (cardResidencial) {
-        cardResidencial.addEventListener('click', function() {
-            abrirWhatsApp('Olá! Gostaria de mais informações sobre os SERVIÇOS RESIDENCIAIS de películas. Podem me ajudar?');
+    if (cardImplantes) {
+        cardImplantes.addEventListener('click', function() {
+            abrirWhatsApp('Olá! Gostaria de mais informações sobre implantes dentários.');
         });
     }
 
@@ -69,15 +69,15 @@ document.addEventListener('DOMContentLoaded', function () {
     const slide = document.querySelector('.slide');
 
     const imagensDesktop = [
-        'img/carrosel-1.png',
-        'img/carrosel-2.png',
-        'img/carrosel-3.png'
+        'https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=1600&q=80',
+        'https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1600&q=80',
+        'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=1600&q=80'
     ];
 
     const imagensMobile = [
-        'img/mobile-carrosel-1.png',
-        'img/mobile-carrosel-2.png',
-        'img/mobile-carrosel-3.png'
+        'https://images.unsplash.com/photo-1606811971618-4486d14f3f99?auto=format&fit=crop&w=900&q=80',
+        'https://images.unsplash.com/photo-1629909615184-74f495363b67?auto=format&fit=crop&w=900&q=80',
+        'https://images.unsplash.com/photo-1600170311833-c2cf5280ce49?auto=format&fit=crop&w=900&q=80'
     ];
 
     let imagemAtual = 0;
